@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-card 
+{
+    width: 100%;
+    padding: 20px;
+}
+app-currency-converter, app-length-converter, .converter-wrap {
+    width: 100%;
+}
+.content.converters {
+    max-width: 800px !important;
+    width: 90vw !important;
+}
+ngx-charts-line-chart {
+    max-width: 90vw;
+    overflow-x: auto;
+}
+.app-title {
+    display: none;
+}

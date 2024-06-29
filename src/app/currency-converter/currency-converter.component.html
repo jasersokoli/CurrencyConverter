@@ -1,0 +1,43 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <mat-card>
+      <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="amount">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>From</mat-label>
+        <mat-select [(ngModel)]="fromCurrency">
+          <mat-option *ngFor="let currency of rates | keyvalue" [value]="currency.key">
+            {{currency.key}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>To</mat-label>
+        <mat-select [(ngModel)]="toCurrency">
+          <mat-option *ngFor="let currency of rates | keyvalue" [value]="currency.key">
+            {{currency.key}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="convert()">Convert</button>
+      <div *ngIf="result">
+        <p>{{amount}} {{fromCurrency}} = {{result | number:'1.2-2'}} {{toCurrency}}</p>
+      </div>
+      <ngx-charts-line-chart
+        *ngIf="historicalData.length > 0"
+        [results]="historicalData"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Date'"
+        [yAxisLabel]="'Rate'"
+        [autoScale]="true"
+        [view]="[700, 300]"
+        [yAxisTickFormatting]="formatYAxisTicks">
+      </ngx-charts-line-chart>
+    </mat-card>
+  </div>
+  
